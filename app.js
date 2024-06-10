@@ -47,9 +47,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 const store = new MongoDBStore({
-    url: dbUrl,
-    secret,
-    touchAfter: 24 * 60 * 60
+    mongooseConnection: mongoose.connection,
+    secret: secret,
+    touchAfter: 24 * 3600 // time period in seconds
 });
 
 store.on("error", function (e) {
