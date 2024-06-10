@@ -11,6 +11,7 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
+const port=3000;
 console.log(process.env)
 
 // 'mongodb://127.0.0.1:27017/yelp-camp'
@@ -93,8 +94,8 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err })
 })
 
-app.listen(3000, () => {
-    console.log('Serving on port 3000')
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`)
 })
 
 
