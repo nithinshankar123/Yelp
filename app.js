@@ -40,38 +40,6 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up session store
-const store = new MongoDBStore({
-    mongooseConnection: mongoose.connection,
-    secret: secret,
-    touchAfter: 24 * 3600 // time period in seconds
-});
-store.on("error", function (e) {
-    console.log("SESSION STORE ERROR", e)
-});
-
-// Configure session
-const sessionConfig = {
-    store,
-    name: 'session',
-    secret: secret,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        httpOnly: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
-    }
-};
-
-app.use(session(sessionConfig));
-app.use(flash());
-
-// Passport configuration
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 // Middleware to set locals
 app.use((req, res, next) => {
