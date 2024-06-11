@@ -12,7 +12,7 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
 const secret = 'thisshouldbeabettersecret!';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 6010;
 
 // Connect to MongoDB
 const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/yelp-camp';
